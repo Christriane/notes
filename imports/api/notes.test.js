@@ -71,7 +71,7 @@ if(Meteor.isServer){
             const note = Notes.findOne(noteOne._id);
             
             expect(note.updatedAt).toBeGreaterThan(0);
-            expect(note).toMatchObject({
+            expect(note).toInclude({
                 title,
                 body: noteOne.body
             });
@@ -99,7 +99,7 @@ if(Meteor.isServer){
             
             const note = Notes.findOne(noteOne._id);
             
-            expect(note).toMatchObject(noteOne);
+            expect(note).toInclude(noteOne);
         });
         
         it('should not update note if not authenticated', function(){
@@ -114,7 +114,7 @@ if(Meteor.isServer){
             }).toThrow();
         });
         
-        it('should return a users notes', function(){
+        it('should return a user\'s notes', function(){
             const res = Meteor.server.publish_handlers.notes.apply({ userId: noteOne.userId }); 
             const notes = res.fetch();
             

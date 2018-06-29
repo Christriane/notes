@@ -27,6 +27,8 @@
     "node": "8.11.3"
   },
   "devDependencies": {
-    "expect": "^23.2.0"
+    "enzyme": "^3.3.0",
+    "expect": "^23.2.0",
+    "react-addons-test-utils": "^15.6.2"
   }
 }

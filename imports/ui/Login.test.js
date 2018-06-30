@@ -3,6 +3,7 @@ import React from 'react';
 import expect from 'expect';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { mount } from 'enzyme';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -13,7 +14,8 @@ if(Meteor.isClient){
     describe('Login', function(){
         it('should show error messages', function(){
             const error ='This is not working';
-            const wrapper = mount(<Login loginWithPassword={() => {}}/>);
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Login loginWithPassword={() => {}}/>, options.get());
             
             wrapper.setState({ error });
             expect(wrapper.find('p').text()).toBe(error);
@@ -26,19 +28,21 @@ if(Meteor.isClient){
             const email = 'test@test.com';
             const password = 'password123';
             const spy = expect.createSpy();
-            const wrapper = mount(<Login loginWithPassword={spy}/>)
-            
-            wrapper.ref('email').node.value = email;
-            wrapper.ref('password').node.value = password;
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Login loginWithPassword={spy}/>, options.get());
+
+            wrapper.instance('Login').refs.email.value = email;
+            wrapper.instance('Login').refs.password.value = password;            
             wrapper.find('form').simulate('submit');
             
             expect(spy.calls[0].arguments[0]).toEqual({ email });
-            expect(spy.calls[0].arguments[1]).toBe({ password });
+            expect(spy.calls[0].arguments[1]).toBe(password);
         });
         
         it('should set loginWithPassword callback errors', function() {
             const spy = expect.createSpy();
-            const wrapper = mount(<Login loginWithPassword={spy}/>);
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Login loginWithPassword={spy}/>,  options.get());
             
             wrapper.find('form').simulate('submit');
             

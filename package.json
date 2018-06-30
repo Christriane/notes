@@ -17,6 +17,7 @@
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
+    "react-router-enzyme-context": "^1.2.0",
     "react-test-renderer": "^16.4.1",
     "simpl-schema": "^1.5.0"
   },

@@ -3,6 +3,7 @@ import React from 'react';
 import expect from 'expect';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { mount } from 'enzyme';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -13,7 +14,8 @@ if(Meteor.isClient){
     describe('Signup', function(){
         it('should show error messages', function(){
             const error ='This is not working';
-            const wrapper = mount(<Signup createUser={() => {}}/>);
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Signup createUser={() => {}}/>, options.get());
             
             wrapper.setState({ error });
             expect(wrapper.find('p').text()).toBe(error);
@@ -26,10 +28,11 @@ if(Meteor.isClient){
             const email = 'test@test.com';
             const password = 'password123';
             const spy = expect.createSpy();
-            const wrapper = mount(<Signup createUser={spy}/>)
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Signup createUser={spy}/>, options.get())
             
-            wrapper.ref('email').node.value = email;
-            wrapper.ref('password').node.value = password;
+            wrapper.instance('Signup').refs.email.value = email;
+            wrapper.instance('Signup').refs.password.value = password;
             wrapper.find('form').simulate('submit');
             
             expect(spy.calls[0].arguments[0]).toEqual({ email, password });
@@ -37,12 +40,13 @@ if(Meteor.isClient){
         
         it('should set error if short password', function(){
             const email = 'test@test.com';
-            const password = 'password123';
+            const password = 'pass';
             const spy = expect.createSpy();
-            const wrapper = mount(<Signup createUser={spy}/>)
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Signup createUser={spy}/>, options.get())
             
-            wrapper.ref('email').node.value = email;
-            wrapper.ref('password').node.value = password;
+            wrapper.instance('Signup').refs.email.value = email;
+            wrapper.instance('Signup').refs.password.value = password;
             wrapper.find('form').simulate('submit');
             
             expect(wrapper.state('error').length).toBeGreaterThan(0);
@@ -52,9 +56,10 @@ if(Meteor.isClient){
             const password = 'password123!';
             const reason = 'This is why it failed';
             const spy = expect.createSpy();
-            const wrapper = mount(<Signup createUser={spy}/>);
+            const options = new ReactRouterEnzymeContext();
+            const wrapper = mount(<Signup createUser={spy}/>, options.get());
             
-            wrapper.ref('password').node.value = password;
+            wrapper.instance('Signup').refs.password.value = password;
             wrapper.find('form').simulate('submit');
             
             spy.calls[0].arguments[1]({ reason });

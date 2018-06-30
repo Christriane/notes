@@ -50,7 +50,7 @@ export class Signup extends React.Component {
     };
   }
 
-    Signup.PropTypes = {
+    Signup.propTypes = {
         createUser: PropTypes.func.isRequired
     }
   

@@ -6,25 +6,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 
 import { NoteList } from './NoteList';
-
-const notes = [
-    {
-        _id: 'notedId1',
-        title: 'Test title',
-        body: '',
-        updateAt: 0,
-        userId: 'userId1'
-    },{
-        _id: 'notedId2',
-        title: '',
-        body: 'sample text here',
-        updateAt: 0,
-        userId: 'userId2'
-    }
-]
+import { notes } from '../fixtures/fixtures';
 
 if(Meteor.isClient){
-    describe('NoteListEmptyItem', function(){
+    describe('NoteList', function(){
         it('should render NoteListItem for each note', function(){
             const wrapper = mount(<NoteList notes={notes}/>);
 

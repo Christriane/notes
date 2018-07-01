@@ -21,4 +21,4 @@ export default withTracker(() => {
     return {
         meteorCall: Meteor.call
     }
-})(NoteListHeader)
+})(NoteListHeader);

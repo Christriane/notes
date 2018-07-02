@@ -17,18 +17,18 @@
     border-left: $item-border-width solid transparent;
     cursor: pointer;
     padding: $space;
-    transition: background-color .3s ease, border-left .3 ease;
-}
+    transition: background-color .3s ease, border-left .3s ease;
+  }
 
 .item:hover {
     background-color: $light-grey;
     border-left: $item-border-width solid $grey;
-}
+  }
 
 .item--selected, .item--selected:hover {
     background-color: $light-grey;
     border-left: $item-border-width solid $brand-primary;
-}
+  }
 
 .item__title {
     font-size: $base-font-size;

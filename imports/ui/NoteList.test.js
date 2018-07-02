@@ -3,7 +3,6 @@ import expect from 'expect';
 import { Meteor } from 'meteor/meteor';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 
 import { NoteList } from './NoteList';
 import { notes } from '../fixtures/fixtures';

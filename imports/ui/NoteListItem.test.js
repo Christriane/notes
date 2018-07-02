@@ -18,11 +18,11 @@ if(Meteor.isClient){
                 };
             });
 
-            it('should renter title and timestamp', function (){
+            it('should render title and timestamp', function (){
                 const wrapper = mount(<NoteListItem note={notes[0]} Session={Session}/>);
     
                 expect(wrapper.find('h5').text()).toBe(notes[0].title);
-                expect(wrapper.find('p').text()).toBe('7/01/18');
+                expect(wrapper.find('p').text()).toBe('7/02/18');
             });
 
             it('should set default title if not title set', function(){

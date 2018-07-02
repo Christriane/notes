@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor --port $IP:$PORT test --driver-package=cultofcoders:mocha",
+    "test": "meteor test --driver-package=cultofcoders:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {

@@ -20,6 +20,7 @@
     flex-grow: 1;
     font-weight: 300;
     margin-bottom: $large-space;
+    -webkit-overflow-scrolling: touch;
     outline: none;
     padding: $input-spacing;
     resize: none;

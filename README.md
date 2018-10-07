@@ -1,4 +1,4 @@
-# Meteor React Notes App
+# Notes App
 Developed as part of a project from Andrew Mead's React.js Course on Udemy.
 
 Notes is a simple web application that allows the user to create an account to write down a note. It allows the user to delete that note when it's no longer needed. 
